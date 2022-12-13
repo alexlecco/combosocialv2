@@ -1,10 +1,36 @@
+import React, { useState } from 'react';
+import { StyleSheet, ImageBackground, View } from 'react-native';
+
+// libraries
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+
+// constants
+import { colors, bgImages } from './src/constants';
+
+const imageURL = { uri: bgImages.bg2 };
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <ImageBackground source={imageURL} resizeMode='cover' style={styles.imageCover}>
+        {user && <ShowUserInfo /> }
+        {user === null && (
+          <>
+            <View styles>
+              <Button
+                title='Ingresá con Google'
+                onPress={() => googlePromptAsync()}
+                type='clear'
+                titleStyle={{ color: colors.white}}
+                icon={{ name: 'google', color: colors.white, type:'zocial' }}
+              />
+            </View>
+          </>
+        )}
+      </ImageBackground>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +39,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    color: '#ffffff',
+  },
+  screen: {
+    flex: 1,
+  },
+  imageCover: {
+    flex: 1,
+    justifyContent: 'space-around',
+    width: '100%',
   },
 });

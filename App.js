@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, ImageBackground, View } from 'react-native';
+import 'expo-dev-client';
 
 // libraries
 import { StatusBar } from 'expo-status-bar';
